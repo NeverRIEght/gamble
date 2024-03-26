@@ -9,14 +9,6 @@ public class Cell {
         this.color = color;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
     @Override
     public String toString() {
         return "Cell{" +
