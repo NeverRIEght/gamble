@@ -9,6 +9,10 @@ public class Cell {
         this.color = color;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     @Override
     public String toString() {
         return "Cell{" +
