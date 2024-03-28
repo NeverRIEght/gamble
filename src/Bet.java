@@ -1,11 +1,10 @@
 public class Bet {
     private int amount;
-
     private int number;
 
-    public Bet(int amount, int number) {
-        this.amount = amount;
+    public Bet(int number, int amount) {
         this.number = number;
+        this.amount = amount;
     }
 
     public int getNumber() {

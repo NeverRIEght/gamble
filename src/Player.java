@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Player {
     private String name;
     private int money;
@@ -7,24 +9,17 @@ public class Player {
         this.money = money;
     }
 
-    public Bet generateBet() {
-
-        int betAmount = (int) (Math.random() * money);
-        int numberToBetOn = (int) (Math.random() * 37);
-
-        if (betAmount == 0) {
-            betAmount = 1;
-        }
-
-        return new Bet(betAmount, numberToBetOn);
+    public Machine chooseMachine(ArrayList<Machine> machines) {
+        int randomMachineIndex = (int) (Math.random() * (machines.size() - 1));
+        return machines.get(randomMachineIndex);
     }
 
-    public void deposit(int amount) {
-        if (amount > this.money) {
-            throw new RuntimeException("Not enough money!");
-        }
+    public Bet generateBet() {
+        int betAmount = (int) (Math.random() * money) + 1;
+        int numberToBetOn = (int) (Math.random() * 37);
 
-        this.money -= amount;
+        this.money -= betAmount;
+        return new Bet(numberToBetOn, betAmount);
     }
 
     public String getName() {
