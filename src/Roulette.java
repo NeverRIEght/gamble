@@ -4,7 +4,7 @@ public class Roulette extends Machine {
     private Casino casino;
     private ArrayList<Bet> betsList;
     private ArrayList<Player> players;
-    private int betsAmount;
+    private int rouletteBalance;
     private static final double RED_BLACK_MULTIPLIER = 1.2;
     private static final double ZERO_MULTIPLIER = 2.0;
 
@@ -30,8 +30,8 @@ public class Roulette extends Machine {
             }
         }
 
-        if(betsAmount != 0) {
-
+        if(rouletteBalance != 0) {
+            casino.takeMoney(rouletteBalance);
         }
     }
 
@@ -46,7 +46,7 @@ public class Roulette extends Machine {
     public void placeBet(Player player, Bet bet) {
         players.add(player);
         betsList.add(bet);
-        betsAmount += bet.getAmount();
+        rouletteBalance += bet.getAmount();
 
         if(players.size() >= 2) {
             spin();
@@ -54,11 +54,11 @@ public class Roulette extends Machine {
     }
 
     private void withdraw(Player player, int amount) {
-        if(amount > betsAmount) {
+        if(amount > rouletteBalance) {
             throw new RuntimeException("The casino went bankrupt");
         }
 
-        this.betsAmount -= amount;
+        this.rouletteBalance -= amount;
         player.takeMoney(amount);
     }
 
